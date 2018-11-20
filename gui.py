@@ -499,7 +499,7 @@ class Window(QMainWindow):
 
         text_items = [ a[3] for a in self.behavior_items[self.selected_tail_angles] ]
         text_item = text_items[index]
-        y = 0.9*np.amax(self.tail_angles[self.selected_tail_angles][:, -3:])
+        y = 0.9*np.nanmax(np.nanmean(self.tail_angles[self.selected_tail_angles][:, -3:], axis=1))
         x = (behavior_end_time + behavior_start_time)/2.0
         text_item.setPos(x, y)
 
@@ -524,7 +524,7 @@ class Window(QMainWindow):
 
         text_items = [ a[3] for a in self.behavior_items[self.selected_tail_angles] ]
         text_item = text_items[index]
-        y = 0.9*np.amax(self.tail_angles[self.selected_tail_angles][:, -3:])
+        y = 0.9*np.nanmax(np.nanmean(self.tail_angles[self.selected_tail_angles][:, -3:], axis=1))
         x = (behavior_end_time + behavior_start_time)/2.0
         text_item.setPos(x, y)
 
