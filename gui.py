@@ -419,7 +419,7 @@ class Window(QMainWindow):
 
             self.tail_angles_list.setCurrentRow(self.selected_tail_angles)
 
-            self.plot_selected_tail_angles()
+        self.plot_selected_tail_angles()
 
     def import_video(self):
         # let user pick a video file
@@ -541,6 +541,15 @@ class Window(QMainWindow):
                 self.plot_selected_tail_angles()
 
                 self.create_plot_items()
+
+                if self.videos[index] is not None:
+                    capture = self.videos[index]
+
+                    capture.set(cv2.CAP_PROP_POS_FRAMES, 0)
+                    _, frame = capture.read()
+                    frame = frame.transpose((1, 0, 2))
+
+                    self.video_plot.setImage(frame)
 
             self.remove_tail_angles_button.setDisabled(False)
             self.add_video_button.setDisabled(False)
