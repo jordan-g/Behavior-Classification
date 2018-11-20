@@ -638,7 +638,7 @@ class Window(QMainWindow):
             else:
                 video_name = name
 
-            with open('{}_behaviors.csv'.format(video_name), mode='w') as file:
+            with open(os.path.join(directory, '{}_behaviors.csv'.format(video_name)), mode='w') as file:
                 writer = csv.writer(file, delimiter=',')
                 writer.writerow(['Behavior', 'Start Time (s)', 'End Time (s)'])
                 for j in range(len(self.behaviors[i])):
