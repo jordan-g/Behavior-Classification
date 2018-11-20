@@ -194,6 +194,7 @@ class Window(QMainWindow):
         self.preview_line_item      = None
         self.behaviors              = []
         self.selected_behavior      = 0
+        self.current_frame          = 0
 
         self.setWindowTitle("")
 
@@ -230,14 +231,17 @@ class Window(QMainWindow):
             if len(self.videos) > 0 and self.videos[self.selected_tail_angles] is not None:
                 frame_num = int(x*framerate)
 
-                if 0 <= frame_num < len(self.tail_angles[self.selected_tail_angles]):
+                if 0 <= frame_num < len(self.tail_angles[self.selected_tail_angles]) and frame_num != self.current_frame:
                     capture = self.videos[self.selected_tail_angles]
 
-                    capture.set(cv2.CAP_PROP_POS_FRAMES, frame_num)
+                    if frame_num != self.current_frame+1:
+                        capture.set(cv2.CAP_PROP_POS_FRAMES, frame_num)
                     _, frame = capture.read()
                     frame = frame.transpose((1, 0, 2))
 
                     self.video_plot.setImage(frame)
+
+                    self.current_frame = frame_num
 
             if self.behavior_start_time is not None:
                 if len(self.behavior_items[self.selected_tail_angles][-1]) > 1:
