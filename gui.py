@@ -37,7 +37,7 @@ class Window(QMainWindow):
 
         # create main widget
         self.main_widget = QWidget(self)
-        self.main_widget.setMinimumSize(QSize(1000, 400))
+        self.main_widget.setMinimumSize(QSize(1100, 400))
 
         # set colors
         self.bg_color = (self.palette().color(self.backgroundRole()).red(), self.palette().color(self.backgroundRole()).green(), self.palette().color(self.backgroundRole()).blue())
