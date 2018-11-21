@@ -1,4 +1,4 @@
-# Behavior-Classification
+# Behavior Classification
 Software for manually classifying zebrafish swim behavior from tail traces and videos.
 
 ![Screenshot](Screenshot.png)
